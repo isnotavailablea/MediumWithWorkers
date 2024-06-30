@@ -1,6 +1,6 @@
-import React, { useState, FormEvent } from 'react'
+import { useState, FormEvent } from 'react'
 import Header from '../StateStore/Header'
-import { EditBlog, PostBlog, fetchUser } from '../AuthFunctions';
+import {  PostBlog, fetchUser } from '../AuthFunctions';
 import { UserBlog } from '../StateStore/HomeComp';
 import { useSetRecoilState } from 'recoil';
 
@@ -12,7 +12,7 @@ function Create() {
     // Here you would typically send the new post data to your backend
     try{
         e.preventDefault();
-        const res = await PostBlog(title , content);
+        await PostBlog(title , content);
         const nw = await fetchUser(localStorage.getItem("token"));
         setPosts(nw);
         setTitle('');

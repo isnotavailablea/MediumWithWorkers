@@ -27,10 +27,10 @@ const PostCard: React.FC<Props> = ({ posts }) => {
         setEditedContent(post.content);
     };
 
-    const handleSaveEdit = async (post: BlogPost) => {
+    const handleSaveEdit = async () => {
         if(editingId === null)return;
         try{
-        const res = await EditBlog(editedTitle , editedContent , editingId);
+        await EditBlog(editedTitle , editedContent , editingId);
         const nw = await fetchUser(localStorage.getItem("token"))
         setPosts(nw);
         setEditingId(null);
@@ -62,7 +62,7 @@ const PostCard: React.FC<Props> = ({ posts }) => {
                                             rows={3}
                                         />
                                         <button
-                                            onClick={() => handleSaveEdit(post)}
+                                            onClick={() => handleSaveEdit()}
                                             className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
                                         >
                                             Save
