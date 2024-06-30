@@ -55,7 +55,32 @@ function Discover() {
         <div>
             <Header />
 
-            <div className='grid grid-cols-12'>
+            <div className='grid grid-cols-1 md:grid-cols-12'>
+                
+                {(allUsers.length <= 0) ? <div>Loading...</div> : <div className='col-span-4 text-2xl flex justify-center p-8'>
+                    <ul className='h-56 md:h-80 overflow-y-scroll bg-white shadow-2xl rounded-lg'>
+                        {allUsers.map(user => { 
+                            return <li key={user.id}>
+                                <div className="py-8 px-8 max-w-sm mx-auto bg-white rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
+                                    <img className="block mx-auto h-24 rounded-full sm:mx-0 sm:shrink-0" src={`https://dummyimage.com/300.png/09f/fff&text=${(user.name ? user.name : "A")}`} alt="Woman's Face" />
+                                    <div className="text-center space-y-2 sm:text-left">
+                                        <div className="space-y-0.5">
+                                            <p className="text-lg text-black font-semibold">
+                                                {user.name}
+                                            </p>
+                                            <p className="text-slate-500 text-sm">
+                                                {user.email}
+                                            </p>
+                                        </div>
+                                        <button className="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2" onClick={()=>{fetchPosts(user.id)}}>Explore!</button>
+                                    </div>
+                                </div>
+                            </li>
+                        })}
+                    </ul>
+
+                </div>}
+
                 <div className='col-span-8 bg-red'>
                     {(!posts || posts.length <= 0) ? <div>User Has no Posts</div> :
                         <div>
@@ -84,29 +109,6 @@ function Discover() {
                              }
                         </div>}
                 </div>
-                {(allUsers.length <= 0) ? <div>Loading...</div> : <div className='col-span-4 text-2xl flex justify-center p-8'>
-                    <ul className='h-80 overflow-y-scroll bg-white shadow-2xl rounded-lg'>
-                        {allUsers.map(user => {
-                            return <li key={user.id}>
-                                <div className="py-8 px-8 max-w-sm mx-auto bg-white rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
-                                    <img className="block mx-auto h-24 rounded-full sm:mx-0 sm:shrink-0" src={`https://dummyimage.com/300.png/09f/fff&text=${(user.name ? user.name : "A")}`} alt="Woman's Face" />
-                                    <div className="text-center space-y-2 sm:text-left">
-                                        <div className="space-y-0.5">
-                                            <p className="text-lg text-black font-semibold">
-                                                {user.name}
-                                            </p>
-                                            <p className="text-slate-500 text-sm">
-                                                {user.email}
-                                            </p>
-                                        </div>
-                                        <button className="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2" onClick={()=>{fetchPosts(user.id)}}>Explore!</button>
-                                    </div>
-                                </div>
-                            </li>
-                        })}
-                    </ul>
-
-                </div>}
 
             </div>
         </div>
