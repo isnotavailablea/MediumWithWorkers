@@ -81,11 +81,11 @@ const PostBlog = async (title : string , content : string) => {
 
 const EditBlog = async (title : string , content : string , blogID : string) => {
     try{
-        const req = {token : localStorage.getItem("token"),
-        title ,
-        content,
-        blogID}
-        // console.log("Edit Blog Func " , req)
+        // const req = {token : localStorage.getItem("token"),
+        // title ,
+        // content,
+        // blogID}
+        // // console.log("Edit Blog Func " , req)
         await Axios.put("https://my-app.co-b-13-alok-mishra.workers.dev/api/v1/blog" , {
             token : localStorage.getItem("token"),
             title ,
