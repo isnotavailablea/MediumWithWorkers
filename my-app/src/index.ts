@@ -12,7 +12,9 @@ const app = new Hono<{
     userId : string,
   }
 }>().basePath("/api/v1");
-app.use("/*" , cors())
+app.use("/*" , cors({
+  origin : ["https://medium-with-workers.vercel.app"]
+}))
 app.route("/user" , userRouter)
 
 app.route("/blog" , blogRouter)
